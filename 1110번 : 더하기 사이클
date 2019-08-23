@@ -1,0 +1,27 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+
+
+int main()
+{
+	int n, res;
+	int  n1, n2, n3, nn;
+	int count = 0;
+
+	scanf("%d", &n); //48
+	res = n;
+
+	while (1) {
+		n1 = n / 10;  // 4
+		n2 = n % 10; // 8
+		n3 = (n1 + n2) % 10; // 4+8 =12 -> 2
+		nn = (n2 * 10 )+ n3;// new num = 82
+		n = nn; // 값 갱신
+		count++;
+		if (res == nn) break;
+	}
+	printf("%d", count);
+
+	return 0;
+}
