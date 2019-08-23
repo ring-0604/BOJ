@@ -1,0 +1,28 @@
+#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+void cal(int a, int b)
+{
+	if (a == b) { printf("=="); }
+	else if (a > b) { printf(">"); }
+	else {printf("<");}
+	
+	return;
+}
+
+int input()
+{
+	int i;
+	scanf("%d", &i);
+	return i;
+}
+
+int main()
+{
+	int a, b;
+	a = input();
+	b = input();
+	cal(a,b);
+
+	return 0;
+}
