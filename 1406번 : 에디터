@@ -1,0 +1,75 @@
+#define _CRT_SECURE_NO_WARINGS
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+
+void input();
+void function();
+void output();
+char l_stack[600001], r_stack[600001]; //초기 문자열 + 명령어의 개수
+char newC;
+char order;
+int l_top = 0, r_top = 0, N = 0, length = 0;
+
+
+int main() {
+
+	input();
+
+	return 0;
+}
+
+void input() {
+	scanf("%s", l_stack); //스트링 입력
+
+	l_top = length = strlen(l_stack);
+
+	scanf("%d", &N); //명령 개수
+
+	function();
+}
+
+void function() {
+	for (int i = 0; i < N; i++) { //N번 순회
+		scanf(" %c", &order); //명령어
+		if (order == 'L') //L 함수
+		{
+			if (l_top == 0) continue;
+			l_top--;
+			r_stack[r_top] = l_stack[l_top];
+			r_top++; //왼스 빼서 오스에 저장
+		}
+		else if (order == 'D')//D 함수
+		{
+			if (l_top == length) continue; //오스가 비어있으면 스킵
+			if (r_top != 0) r_top--; //아니면 오스 빼기
+			l_stack[l_top] = r_stack[r_top];
+			l_top++; // 왼스에 저장
+		}
+		else if (order == 'B')//B 함수
+		{
+			if (l_top == 0) continue;
+			l_top--; //없애기
+			l_stack[l_top] = r_stack[r_top];
+			length--;
+		}
+		else if (order == 'P')//P 함수
+		{
+			scanf(" %c", &newC);
+			l_stack[l_top] = newC;
+			l_top++;
+			length++;
+		}
+	}
+
+	output();
+}
+void output() {
+	for (int i = 0; i < l_top; i++) // 범위 병신같이 잡음 N -> l_top
+		printf("%c", l_stack[i]);
+	for (int i = r_top - 1; i >= 0; i--) //인덱스
+		printf("%c", r_stack[i]);
+
+	printf("\n");
+
+}
