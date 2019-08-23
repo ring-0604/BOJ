@@ -1,0 +1,38 @@
+#include <stdio.h>
+#define _CRT_SECURE_NO_WARNINGS
+
+void cal(int E, int S, int M)
+{
+	int year = 1; //1 ≤ E ≤ 15, 1 ≤ S ≤ 28, 1 ≤ M ≤ 19
+	int e, s, m;
+	e = s = m = 1;
+
+	while (1){	
+		if (E == e && S == s && M == m) {
+
+			break;
+		}
+		e++; s++; m++;
+		
+		if (e >15) e = 1;
+		if (s > 28) s = 1;
+		if (m > 19) m = 1; // 다시 1로 초기화
+		year++;
+	}
+	printf("%d", year);
+
+}
+
+void input()
+{
+	int E, S, M;
+	scanf("%d %d %d", &E, &S, &M);
+	cal(E, S, M);
+}
+
+
+int main()
+{
+	input();
+	return 0;
+}
