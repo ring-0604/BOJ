@@ -1,3 +1,6 @@
+c언어로 된 코드만 찾다가 c++로 된 코드 참고하니깐 훨씬 이해 잘됨. ㅅㅂ 내시간
+함수 예쁘게 구현하는게 ㅈㄴ 중요하다고 느낌. bool 형 생긴게 맘에 안들어서 안썼는데 좋은 놈이네 이거 
+
 #define _CRT_SECURE_NO_WARINGS
 #include<string.h>
 #include<stdio.h>
