@@ -1,0 +1,70 @@
+#define _CRT_SECURE_NO_WARINGS
+#include<string.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include <stdbool.h>    // bool, true, false가 정의된 헤더 파일
+
+// 좟가텐ㅇ
+
+int arr[10000];
+int _front = 0;
+int _end = 0;
+
+
+void push(int a) {
+	arr[_end++] = a;
+}
+int front() { 
+	return arr[_front];
+}
+void pop() {
+	_front++;
+}
+bool is_least(int a) { // 중요도 제일 작은 놈인지 판별
+	for (int i = _front; i < _end; i++) {
+		if (arr[i] > a)
+			return false;
+	}
+	return true;
+}
+
+int main(void) {
+	int Test_case;
+	scanf("%d", &Test_case);
+	for (int t = 0; t < Test_case; t++) {
+		int N, M;
+		scanf("%d", &N);
+		scanf("%d", &M);
+
+		_front = 0;
+		_end = 0;
+
+		for (int i = 0; i < N; i++) {
+			int d;
+			scanf("%d", &d);
+			push(d);
+		}
+		int count = 0;
+		while (1) {
+			int f = front();
+			if (is_least(f) && _front == M) { // 최솟값이고, 우리가 찾는 문서이면
+				count++; //출력하고 반복문 탈출
+				break;
+			}
+			if (is_least(f)) { //최솟값이면
+				pop(); // 팝하고 넘기기
+				count++;
+			}
+			else { //최솟값 아님
+				if (_front == M) { // 근데 맨 앞놈이 우리가 찾는 놈이면 
+					M = _end; // 우리가 찾는 문서 위치 = 맨 뒤 인덱스로
+				}
+				pop(); // 팝하고 뒤로 다시 넣기
+				push(f);
+			}
+
+		}
+		printf("%d\n", count);
+	}
+}
+
